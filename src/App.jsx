@@ -1,34 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+﻿import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import HeaderNav from './components/HeaderNav'
+import HomePage from './pages/HomePage'
+import PresentationPage from './pages/PresentationPage'
+import LevelDetailPage from './pages/LevelDetailPage'
+import GameHubPage from './pages/GameHubPage'
+import OddOneOutGamePage from './pages/games/OddOneOutGamePage'
+import Game2PlaceholderPage from './pages/games/Game2PlaceholderPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="app-shell">
+        <HeaderNav />
+        <main className="page-shell">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/presentation" element={<PresentationPage />} />
+            <Route path="/presentation/levels/:levelId" element={<LevelDetailPage />} />
+            <Route path="/game" element={<GameHubPage />} />
+            <Route path="/game/ke-ngoai-dao" element={<OddOneOutGamePage />} />
+            <Route path="/game/tro-2" element={<Game2PlaceholderPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </BrowserRouter>
   )
 }
 

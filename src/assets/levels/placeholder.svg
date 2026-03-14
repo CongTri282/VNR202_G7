@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Image placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#2f4f58" />
+      <stop offset="100%" stop-color="#5f8a95" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)" />
+  <rect x="200" y="150" width="560" height="240" rx="20" fill="#ffffff" opacity="0.2" />
+  <path d="M260 340 L390 240 L500 300 L620 215 L700 280" stroke="#f6f8ef" stroke-width="16" fill="none" stroke-linecap="round" />
+  <text x="480" y="270" text-anchor="middle" fill="#f6f8ef" font-size="36" font-family="Segoe UI, Arial, sans-serif" font-weight="700">
+    IMAGE PLACEHOLDER
+  </text>
+  <text x="480" y="310" text-anchor="middle" fill="#f6f8ef" font-size="20" font-family="Segoe UI, Arial, sans-serif">
+    Replace later with official image
+  </text>
+</svg>

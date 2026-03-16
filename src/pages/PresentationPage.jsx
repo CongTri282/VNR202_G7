@@ -7,14 +7,14 @@ function PresentationPage() {
   const containerRef = useRef(null)
   const lockScrollRef = useRef(false)
 
-  const openLevel = (levelId) => {
-    navigate(`/presentation/levels/${levelId}`)
+  const openLevel = (partId) => {
+    navigate(`/presentation/parts/${partId}`)
   }
 
-  const handleLevelKeyDown = (event, levelId) => {
+  const handleLevelKeyDown = (event, partId) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
-      openLevel(levelId)
+      openLevel(partId)
     }
   }
 
@@ -25,6 +25,20 @@ function PresentationPage() {
     }
 
     const sections = () => Array.from(container.querySelectorAll('[data-level-card]'))
+
+    // Parallax: ảnh nền trượt chậm hơn 35% so với tốc độ cuộn
+    const onScroll = () => {
+      const cards = container.querySelectorAll('[data-level-card]')
+      const scrollTop = container.scrollTop
+      cards.forEach((card) => {
+        const bg = card.querySelector('[data-level-bg]')
+        if (!bg) return
+        const offset = scrollTop - card.offsetTop
+        bg.style.transform = `translateY(${offset * 0.35}px)`
+      })
+    }
+
+    container.addEventListener('scroll', onScroll, { passive: true })
 
     const getNearestIndex = () => {
       const cards = sections()
@@ -75,13 +89,14 @@ function PresentationPage() {
 
     container.addEventListener('wheel', onWheel, { passive: false })
     return () => {
+      container.removeEventListener('scroll', onScroll)
       container.removeEventListener('wheel', onWheel)
     }
   }, [])
 
   return (
     <section className="presentation-wrapper route-panel">
-      <div className="game-screen" aria-label="Các level lịch sử" ref={containerRef}>
+      <div className="game-screen" aria-label="Các phần nội dung lịch sử" ref={containerRef}>
         {timeline1986to1991.map((item, index) => (
           <article
             key={item.id}
@@ -94,16 +109,16 @@ function PresentationPage() {
             aria-label={`Mở ${item.level}: ${item.title}`}
             data-level-card
           >
+            <div className="level-bg" data-level-bg aria-hidden="true">
+              <img src={item.image} alt="" className="level-bg-image" loading="lazy" />
+            </div>
             <div className="level-overlay" />
             <div className="level-content">
-              <div className="level-image-wrap">
-                <img src={item.image} alt={item.imageAlt} className="level-image" loading="lazy" />
-              </div>
               <p className="level-tag">{item.level}</p>
               <p className="level-period">{item.period}</p>
               <h2>{item.title}</h2>
               <p>{item.marker}</p>
-              <p className="level-hint">Nhấn để mở trang chi tiết</p>
+              <p className="level-hint">Nhấn để mở chi tiết phần</p>
               <p className="level-progress">
                 Mục {index + 1}/{timeline1986to1991.length}
               </p>

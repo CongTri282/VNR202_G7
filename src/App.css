@@ -197,6 +197,7 @@
   min-height: calc(100vh - 84px);
   scroll-snap-align: start;
   position: relative;
+  overflow: hidden;
   display: grid;
   place-items: center;
   isolation: isolate;
@@ -209,11 +210,28 @@
   outline-offset: -10px;
 }
 
+/* Layer ảnh nền parallax — cao 150% để có đủ chỗ trượt */
+.level-bg {
+  position: absolute;
+  inset: -25% 0;
+  z-index: 0;
+  will-change: transform;
+}
+
+.level-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.22;
+  mix-blend-mode: luminosity;
+}
+
 .level-overlay {
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.23), transparent 34%);
-  z-index: -1;
+  z-index: 1;
 }
 
 .level-content {
@@ -222,6 +240,8 @@
   display: grid;
   gap: 0.7rem;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .level-image-wrap {
@@ -231,6 +251,7 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.22);
+  display: none;
 }
 
 .level-image {

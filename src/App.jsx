@@ -17,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/presentation" element={<PresentationPage />} />
+            <Route path="/presentation/parts/:partId" element={<LevelDetailPage />} />
             <Route path="/presentation/levels/:levelId" element={<LevelDetailPage />} />
             <Route path="/game" element={<GameHubPage />} />
             <Route path="/game/ke-ngoai-dao" element={<OddOneOutGamePage />} />
@@ -29,4 +30,4 @@ function App() {
   )
 }
 
-export default App
+export default App  

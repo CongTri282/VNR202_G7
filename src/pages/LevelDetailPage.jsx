@@ -2,11 +2,22 @@ import { useMemo, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import { timeline1986to1991 } from '../data/timeline1986_1991'
 
+const legacyLevelToPart = {
+  lv1: 'part-1',
+  lv2: 'part-1',
+  lv3: 'part-1',
+  lv4: 'part-2',
+  lv5: 'part-2',
+  lv6: 'part-3',
+  lv7: 'part-3',
+}
+
 function LevelDetailPage() {
-  const { levelId } = useParams()
+  const { partId, levelId } = useParams()
+  const activeId = partId || legacyLevelToPart[levelId] || levelId
   const currentIndex = useMemo(
-    () => timeline1986to1991.findIndex((item) => item.id === levelId),
-    [levelId],
+    () => timeline1986to1991.findIndex((item) => item.id === activeId),
+    [activeId],
   )
 
   const level = currentIndex >= 0 ? timeline1986to1991[currentIndex] : null
@@ -44,8 +55,8 @@ function LevelDetailPage() {
   if (!level) {
     return (
       <section className="detail-page route-panel">
-        <h2>Không tìm thấy level</h2>
-        <p>Level bạn chọn không tồn tại. Hãy quay lại phần Thuyết trình để chọn lại.</p>
+        <h2>Không tìm thấy phần nội dung</h2>
+        <p>Phần bạn chọn không tồn tại. Hãy quay lại mục Thuyết trình để chọn lại.</p>
         <NavLink to="/presentation" className="primary-link">
           Quay lại Thuyết trình
         </NavLink>
@@ -135,24 +146,24 @@ function LevelDetailPage() {
 
           <div className="detail-nav-links" aria-label="Điều hướng giữa các mục">
             {previousLevel ? (
-              <NavLink to={`/presentation/levels/${previousLevel.id}`} className="primary-link secondary-link">
+              <NavLink to={`/presentation/parts/${previousLevel.id}`} className="primary-link secondary-link">
                 ← {previousLevel.level}
               </NavLink>
             ) : (
-              <span className="nav-link-placeholder">Đang ở mục đầu tiên</span>
+              <span className="nav-link-placeholder">Đang ở phần đầu tiên</span>
             )}
 
             {nextLevel ? (
-              <NavLink to={`/presentation/levels/${nextLevel.id}`} className="primary-link secondary-link">
+              <NavLink to={`/presentation/parts/${nextLevel.id}`} className="primary-link secondary-link">
                 {nextLevel.level} →
               </NavLink>
             ) : (
-              <span className="nav-link-placeholder">Đang ở mục cuối cùng</span>
+              <span className="nav-link-placeholder">Đang ở phần cuối cùng</span>
             )}
           </div>
 
           <NavLink to="/presentation" className="primary-link">
-            Quay lại danh sách level
+            Quay lại danh sách các phần
           </NavLink>
         </aside>
       </div>

@@ -13,12 +13,13 @@
   gap: 1rem;
   padding: 0.9rem 1.2rem;
   backdrop-filter: blur(8px);
-  background: linear-gradient(120deg, rgba(13, 51, 65, 0.86), rgba(11, 93, 103, 0.78));
-  border-bottom: 1px solid rgba(255, 232, 184, 0.2);
+  background: var(--gradient-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset);
 }
 
 .brand-block {
-  color: #fff8ea;
+  color: var(--color-white);
 }
 
 .brand-kicker {
@@ -40,24 +41,26 @@
 }
 
 .nav-item {
-  color: #f3f7e7;
+  color: var(--color-white);
   text-decoration: none;
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transition: background-color 220ms ease, transform 220ms ease;
 }
 
 .nav-item:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-glow);
 }
 
 .nav-item.active {
-  background: #f6c35a;
-  border-color: #f6c35a;
-  color: #123b43;
+  background: var(--color-secondary-light);
+  border-color: var(--color-secondary-light);
+  color: var(--color-white);
   font-weight: 700;
+  box-shadow: var(--shadow-glow);
 }
 
 .page-shell {
@@ -112,22 +115,28 @@
   text-decoration: none;
   width: fit-content;
   border-radius: 999px;
-  border: 1px solid #0f6b7e;
+  border: 1px solid var(--color-primary);
   padding: 0.6rem 1.2rem;
-  color: #f6f8ef;
+  color: var(--color-white);
   font-weight: 700;
-  background: linear-gradient(145deg, #0f6b7e, #0f485c);
+  background: var(--gradient-primary);
   transition: transform 220ms ease, box-shadow 220ms ease;
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset);
 }
 
 .primary-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 18px rgba(14, 79, 90, 0.24);
+  box-shadow: var(--shadow-primary-xl), var(--shadow-inset-lg), var(--shadow-glow-lg);
 }
 
 .secondary-link {
-  background: linear-gradient(145deg, #3a5f6b, #2f4c56);
-  border-color: #3a5f6b;
+  background: var(--gradient-primary-reverse);
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset);
+}
+
+.secondary-link:hover {
+  box-shadow: var(--shadow-primary-xl), var(--shadow-inset-lg), var(--shadow-glow-lg);
 }
 
 .game-grid {
@@ -138,11 +147,19 @@
 
 .game-card {
   border-radius: 18px;
-  border: 1px solid rgba(21, 95, 111, 0.2);
-  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-primary);
+  background: var(--glass-bg);
   padding: 1rem;
   display: grid;
   gap: 0.7rem;
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+  backdrop-filter: var(--glass-backdrop);
+  transition: all 0.2s;
+}
+
+.game-card:hover {
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset-lg), var(--shadow-glow);
+  transform: translateY(-2px);
 }
 
 .game-card h3,
@@ -151,18 +168,22 @@
 }
 
 .game-card h3 {
-  color: #0f2f3a;
+  color: var(--color-primary);
 }
 
 .game-card p {
-  color: #2e5560;
+  color: var(--color-gray-dark);
 }
 
 .game-card-tag {
-  color: #0b5f73;
+  color: var(--color-primary);
   font-weight: 700;
   font-size: 0.82rem;
   text-transform: uppercase;
+  background: rgba(255, 64, 129, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  width: fit-content;
 }
 
 .game-card.locked {
@@ -173,11 +194,16 @@
   width: fit-content;
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
-  background: rgba(19, 61, 74, 0.12);
-  color: #1f4d58;
-  border: 1px solid rgba(19, 61, 74, 0.2);
+  background: rgba(255, 64, 129, 0.15);
+  color: var(--color-primary);
+  border: 1px solid var(--border-primary);
   font-weight: 700;
   text-decoration: none;
+}
+
+.lock-badge:hover {
+  background: rgba(255, 64, 129, 0.25);
+  box-shadow: var(--shadow-glow);
 }
 
 .presentation-wrapper {
@@ -328,15 +354,17 @@
 .detail-side-block {
   border-radius: 18px;
   padding: 1rem;
-  border: 1px solid rgba(17, 95, 116, 0.2);
-  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-primary);
+  background: var(--glass-bg);
   display: grid;
   gap: 0.7rem;
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+  backdrop-filter: var(--glass-backdrop);
 }
 
 .detail-side-block h3 {
   margin: 0;
-  color: #123842;
+  color: var(--color-primary);
 }
 
 .detail-header,
@@ -344,8 +372,10 @@
 .impact-box {
   border-radius: 18px;
   padding: 1.2rem;
-  border: 1px solid rgba(17, 95, 116, 0.2);
-  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-primary);
+  background: var(--glass-bg);
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+  backdrop-filter: var(--glass-backdrop);
 }
 
 .detail-header p,
@@ -356,7 +386,7 @@
 
 .detail-header h2 {
   margin-top: 0.4rem;
-  color: #11323d;
+  color: var(--color-primary);
   font-size: clamp(1.3rem, 2.8vw, 2.2rem);
 }
 
@@ -374,17 +404,23 @@
 .chip-item {
   border-radius: 999px;
   padding: 0.35rem 0.7rem;
-  background: #e6f2f4;
-  border: 1px solid rgba(17, 95, 116, 0.3);
-  color: #1f5969;
+  background: rgba(255, 64, 129, 0.1);
+  border: 1px solid var(--border-primary);
+  color: var(--color-primary);
   font-size: 0.83rem;
   font-weight: 700;
+  transition: all 0.2s;
+}
+
+.chip-item:hover {
+  background: rgba(255, 64, 129, 0.2);
+  box-shadow: var(--shadow-glow);
 }
 
 .detail-section h3,
 .impact-box h3 {
   margin: 0 0 0.65rem;
-  color: #123842;
+  color: var(--color-primary);
 }
 
 .detail-toolbar {
@@ -404,16 +440,19 @@
 
 .detail-tool-button {
   border-radius: 999px;
-  border: 1px solid rgba(17, 95, 116, 0.35);
-  background: #eff6f7;
-  color: #1c4f59;
+  border: 1px solid var(--border-primary);
+  background: rgba(255, 64, 129, 0.08);
+  color: var(--color-primary);
   padding: 0.42rem 0.78rem;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .detail-tool-button:hover {
-  background: #e1eff1;
+  background: rgba(255, 64, 129, 0.15);
+  box-shadow: var(--shadow-primary);
+  transform: translateY(-1px);
 }
 
 .section-grid {
@@ -424,9 +463,10 @@
 
 .detail-block {
   border-radius: 12px;
-  border: 1px solid rgba(17, 95, 116, 0.2);
-  background: rgba(246, 250, 249, 0.92);
+  border: 1px solid var(--border-primary-light);
+  background: rgba(255, 255, 255, 0.92);
   padding: 0.75rem;
+  box-shadow: var(--shadow-inset);
 }
 
 .section-media {
@@ -519,9 +559,10 @@
 .odd-panel {
   width: min(920px, 100%);
   border-radius: 20px;
-  border: 1px solid rgba(21, 95, 111, 0.24);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 18px 30px rgba(10, 45, 57, 0.13);
+  border: 1px solid var(--border-primary);
+  background: var(--glass-bg);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset);
+  backdrop-filter: var(--glass-backdrop);
   padding: 1.2rem;
   display: grid;
   gap: 0.95rem;
@@ -534,19 +575,22 @@
 }
 
 .odd-word-btn {
-  border: 1px solid rgba(18, 95, 114, 0.25);
+  border: 1px solid var(--border-primary);
   border-radius: 12px;
-  background: #f6fbfc;
-  color: #143744;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-primary);
   font-size: 0.95rem;
   text-align: left;
   padding: 0.72rem;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .odd-word-btn.active {
-  border-color: #0f6b7e;
-  background: #eaf6f8;
+  border-color: var(--color-primary);
+  background: rgba(255, 64, 129, 0.1);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
 }
 
 .odd-word-btn.correct {
@@ -567,26 +611,35 @@
 
 .odd-control {
   border-radius: 999px;
-  border: 1px solid #0f6b7e;
-  background: linear-gradient(145deg, #0f6b7e, #0f485c);
-  color: #f6f8ef;
+  border: 1px solid var(--color-primary);
+  background: var(--gradient-primary);
+  color: var(--color-white);
   padding: 0.52rem 1rem;
   cursor: pointer;
   font-weight: 700;
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+  transition: all 0.2s;
+}
+
+.odd-control:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset-lg), var(--shadow-glow);
 }
 
 .odd-control.ghost {
-  border-color: #3a5f6b;
-  background: linear-gradient(145deg, #3a5f6b, #2f4c56);
+  border-color: var(--color-secondary);
+  background: var(--gradient-primary-reverse);
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
 }
 
 .odd-result {
   border-radius: 14px;
-  border: 1px solid rgba(21, 95, 111, 0.2);
-  background: #f5fafb;
+  border: 1px solid var(--border-primary);
+  background: rgba(255, 64, 129, 0.05);
   padding: 0.9rem;
   display: grid;
   gap: 0.45rem;
+  box-shadow: var(--shadow-inset);
 }
 
 .odd-result h3,

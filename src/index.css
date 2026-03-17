@@ -11,6 +11,48 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* === DESIGN SYSTEM - COLOR THEME === */
+  /* Primary Colors */
+  --color-primary: #FF4081;
+  --color-primary-dark: #F50057;
+  --color-primary-light: #FF6BA6;
+
+  /* Secondary Colors */
+  --color-secondary: #2196F3;
+  --color-secondary-dark: #1976D2;
+  --color-secondary-light: #42A5F5;
+
+  /* Gradient */
+  --gradient-primary: linear-gradient(135deg, #FF4081 0%, #2196F3 100%);
+  --gradient-primary-reverse: linear-gradient(135deg, #2196F3 0%, #FF4081 100%);
+  --gradient-vertical: linear-gradient(180deg, #FF4081, #2196F3);
+  --gradient-background: linear-gradient(180deg, rgba(255, 230, 240, 0.6) 0%, rgba(230, 245, 255, 0.6) 100%);
+
+  /* Shadows */
+  --shadow-primary: 0 2px 8px rgba(255, 64, 129, 0.3);
+  --shadow-primary-lg: 0 4px 16px rgba(255, 64, 129, 0.35);
+  --shadow-primary-xl: 0 6px 24px rgba(255, 64, 129, 0.45);
+  --shadow-glow: 0 0 30px rgba(255, 64, 129, 0.3);
+  --shadow-glow-lg: 0 0 40px rgba(255, 64, 129, 0.4);
+
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --shadow-inset-lg: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+
+  /* Border Colors */
+  --border-primary: rgba(255, 64, 129, 0.25);
+  --border-primary-light: rgba(255, 64, 129, 0.15);
+
+  /* Neutral Colors */
+  --color-white: #FFFFFF;
+  --color-gray-light: rgba(255, 255, 255, 0.95);
+  --color-gray-dark: #333333;
+  --color-text-muted: #666666;
+
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 64, 129, 0.3);
+  --glass-backdrop: blur(10px);
 }
 
 * {

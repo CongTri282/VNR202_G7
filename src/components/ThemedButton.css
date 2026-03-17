@@ -1,0 +1,87 @@
+/* ThemedButton.css - Example component using Design System */
+
+.themed-button {
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Primary Variant */
+.themed-button--primary {
+  background: var(--gradient-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+}
+
+.themed-button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset-lg);
+}
+
+.themed-button--primary:active {
+  transform: translateY(0);
+}
+
+.themed-button--primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Secondary Variant */
+.themed-button--secondary {
+  background: var(--gradient-primary-reverse);
+  color: var(--color-white);
+  box-shadow: var(--shadow-primary), var(--shadow-inset);
+}
+
+.themed-button--secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg), var(--shadow-inset-lg);
+}
+
+/* Outline Variant */
+.themed-button--outline {
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.themed-button--outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-primary-lg);
+}
+
+/* Text Variant */
+.themed-button--text {
+  background: transparent;
+  color: var(--color-primary);
+  margin: 0;
+  padding: 8px 12px;
+  box-shadow: none;
+}
+
+.themed-button--text:hover {
+  background: rgba(255, 64, 129, 0.1);
+}
+
+/* Shine Effect */
+.themed-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  animation: shine 3s infinite;
+}

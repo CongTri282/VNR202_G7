@@ -1,6 +1,7 @@
 ﻿import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HeaderNav from './components/HeaderNav'
+import SupportChatWidget from './components/SupportChatWidget'
 import HomePage from './pages/HomePage'
 import PresentationPage from './pages/PresentationPage'
 import LevelDetailPage from './pages/LevelDetailPage'
@@ -25,6 +26,7 @@ function App() {
             <Route path="*" element={<HomePage />} />
           </Routes>
         </main>
+        <SupportChatWidget />
       </div>
     </BrowserRouter>
   )

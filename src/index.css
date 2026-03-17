@@ -25,6 +25,9 @@
 
   /* Gradient */
   --gradient-primary: linear-gradient(135deg, #FF4081 0%, #2196F3 100%);
+  --gradient-primary-warm: linear-gradient(135deg, #ffd1ff 0%, #fad0c4 100%);
+  --gradient-primary-subtle: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
+  --gradient-primary-fresh: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
   --gradient-primary-reverse: linear-gradient(135deg, #2196F3 0%, #FF4081 100%);
   --gradient-vertical: linear-gradient(180deg, #FF4081, #2196F3);
   --gradient-background: linear-gradient(180deg, rgba(255, 230, 240, 0.6) 0%, rgba(230, 245, 255, 0.6) 100%);

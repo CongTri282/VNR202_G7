@@ -64,6 +64,8 @@
 }
 
 .page-shell {
+  backdrop-filter: blur(8px);
+  background: var(--gradient-primary-warm);
   padding-top: 84px;
 }
 

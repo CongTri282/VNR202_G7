@@ -19,12 +19,14 @@ function GameHubPage() {
           </NavLink>
         </article>
 
-        <article className="game-card locked">
+        <article className="game-card">
           <p className="game-card-tag">Trò 2</p>
-          <h3>Đang cập nhật</h3>
-          <p>Khung route đã sẵn sàng và sẽ triển khai tiếp theo.</p>
-          <NavLink to="/game/tro-2" className="lock-badge">
-            Sắp ra mắt
+          <h3>Xếp hình lịch sử</h3>
+          <p>
+            Ghép lại ảnh tư liệu Đại hội VI bằng cách di chuyển các mảnh liền kề vào ô trống.
+          </p>
+          <NavLink to="/game/tro-2" className="primary-link secondary-link">
+            Chơi ngay
           </NavLink>
         </article>
       </div>

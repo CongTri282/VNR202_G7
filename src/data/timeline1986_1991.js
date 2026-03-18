@@ -5,7 +5,7 @@ import partThreeImage from '../assets/vnr3.jpg'
 export const timeline1986to1991 = [
   {
     id: 'part-1',
-    level: 'Phần 1',
+    section: 'Phần 1',
     period: '1986',
     title: 'Bối cảnh và Đường lối Đổi mới tại Đại hội VI',
     marker:
@@ -39,7 +39,7 @@ export const timeline1986to1991 = [
   },
   {
     id: 'part-2',
-    level: 'Phần 2',
+    section: 'Phần 2',
     period: '1986 - 1991',
     title: 'Quá trình chỉ đạo thực hiện Nghị quyết Đại hội VI',
     marker: 'Triển khai các giải pháp kinh tế trọng tâm và đổi mới chính trị, đối ngoại trong thực tiễn.',
@@ -76,7 +76,7 @@ export const timeline1986to1991 = [
   },
   {
     id: 'part-3',
-    level: 'Phần 3',
+    section: 'Phần 3',
     period: '1991',
     title: 'Đại hội VII và những định hướng chiến lược',
     marker: 'Khẳng định định hướng quá độ lên chủ nghĩa xã hội và chiến lược phát triển đến năm 2000.',

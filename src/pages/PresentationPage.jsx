@@ -1,125 +1,126 @@
-﻿import { useNavigate } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { timeline1986to1991 } from '../data/timeline1986_1991'
 
 function PresentationPage() {
+  const location = useLocation()
   const navigate = useNavigate()
   const containerRef = useRef(null)
-  const lockScrollRef = useRef(false)
-
-  const openLevel = (partId) => {
-    navigate(`/presentation/parts/${partId}`)
-  }
-
-  const handleLevelKeyDown = (event, partId) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      openLevel(partId)
-    }
-  }
+  const navigateTimeoutRef = useRef(null)
+  const [isLeavingToDetail, setIsLeavingToDetail] = useState(false)
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) {
-      return undefined
+      return
     }
 
-    const sections = () => Array.from(container.querySelectorAll('[data-level-card]'))
-
-    // Parallax: ảnh nền trượt chậm hơn 35% so với tốc độ cuộn
-    const onScroll = () => {
-      const cards = container.querySelectorAll('[data-level-card]')
-      const scrollTop = container.scrollTop
-      cards.forEach((card) => {
-        const bg = card.querySelector('[data-level-bg]')
-        if (!bg) return
-        const offset = scrollTop - card.offsetTop
-        bg.style.transform = `translateY(${offset * 0.35}px)`
-      })
+    const cards = Array.from(container.querySelectorAll('[data-section-card]'))
+    if (!cards.length) {
+      return
     }
 
-    container.addEventListener('scroll', onScroll, { passive: true })
+    const returnToPartId = location.state?.returnToPartId
+    const targetCard = returnToPartId
+      ? cards.find((card) => card.getAttribute('data-part-id') === returnToPartId)
+      : null
 
-    const getNearestIndex = () => {
-      const cards = sections()
-      const top = container.scrollTop
-      let nearestIndex = 0
-      let nearestDistance = Number.POSITIVE_INFINITY
+    const previousHtmlOverflow = document.documentElement.style.overflow
+    const previousBodyOverflow = document.body.style.overflow
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
 
-      cards.forEach((card, index) => {
-        const distance = Math.abs(card.offsetTop - top)
-        if (distance < nearestDistance) {
-          nearestDistance = distance
-          nearestIndex = index
-        }
-      })
+    ;(targetCard || cards[0]).classList.add('is-visible')
 
-      return nearestIndex
+    if (targetCard) {
+      container.scrollTo({ top: targetCard.offsetTop, behavior: 'auto' })
     }
 
-    const onWheel = (event) => {
-      if (Math.abs(event.deltaY) < 8) {
-        return
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((card) => card.classList.add('is-visible'))
+      return () => {
+        document.documentElement.style.overflow = previousHtmlOverflow
+        document.body.style.overflow = previousBodyOverflow
       }
-
-      event.preventDefault()
-      if (lockScrollRef.current) {
-        return
-      }
-
-      const cards = sections()
-      if (cards.length === 0) {
-        return
-      }
-
-      const currentIndex = getNearestIndex()
-      const step = event.deltaY > 0 ? 1 : -1
-      const nextIndex = Math.min(cards.length - 1, Math.max(0, currentIndex + step))
-
-      if (nextIndex === currentIndex) {
-        return
-      }
-
-      lockScrollRef.current = true
-      cards[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'start' })
-      window.setTimeout(() => {
-        lockScrollRef.current = false
-      }, 520)
     }
 
-    container.addEventListener('wheel', onWheel, { passive: false })
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const shouldShow = entry.isIntersecting && entry.intersectionRatio >= 0.55
+          entry.target.classList.toggle('is-visible', shouldShow)
+        })
+      },
+      {
+        root: container,
+        threshold: [0.35, 0.55, 0.75],
+        rootMargin: '0px 0px -6% 0px',
+      }
+    )
+
+    cards.forEach((card) => observer.observe(card))
+
     return () => {
-      container.removeEventListener('scroll', onScroll)
-      container.removeEventListener('wheel', onWheel)
+      observer.disconnect()
+      document.documentElement.style.overflow = previousHtmlOverflow
+      document.body.style.overflow = previousBodyOverflow
+      if (navigateTimeoutRef.current) {
+        window.clearTimeout(navigateTimeoutRef.current)
+      }
     }
-  }, [])
+  }, [location.state])
+
+  const openSection = (partId) => {
+    if (isLeavingToDetail) {
+      return
+    }
+
+    setIsLeavingToDetail(true)
+    navigateTimeoutRef.current = window.setTimeout(() => {
+      navigate(`/presentation/parts/${partId}`, {
+        state: { enterAnimation: 'slide-from-right' },
+      })
+    }, 340)
+  }
+
+  const handleSectionKeyDown = (event, partId) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      openSection(partId)
+    }
+  }
 
   return (
-    <section className="presentation-wrapper route-panel">
-      <div className="game-screen" aria-label="Các phần nội dung lịch sử" ref={containerRef}>
+    <section
+      className={`presentation-wrapper route-panel${
+        isLeavingToDetail ? ' route-slide-out-left' : ''
+      }${location.state?.enterAnimation === 'slide-from-left' ? ' route-slide-in-left' : ''}`}
+    >
+      <div ref={containerRef} className="game-screen" aria-label="Các phần nội dung lịch sử">
         {timeline1986to1991.map((item, index) => (
           <article
             key={item.id}
-            className="level-screen"
-            style={{ '--level-gradient': item.gradient }}
-            onClick={() => openLevel(item.id)}
-            onKeyDown={(event) => handleLevelKeyDown(event, item.id)}
+            className="section-screen"
+            style={{ '--section-gradient': item.gradient }}
+            onClick={() => openSection(item.id)}
+            onKeyDown={(event) => handleSectionKeyDown(event, item.id)}
             role="button"
             tabIndex={0}
-            aria-label={`Mở ${item.level}: ${item.title}`}
-            data-level-card
+            aria-label={`Mở ${item.section}: ${item.title}`}
+            data-section-card
+            data-part-id={item.id}
           >
-            <div className="level-bg" data-level-bg aria-hidden="true">
-              <img src={item.image} alt="" className="level-bg-image" loading="lazy" />
+            <div className="section-bg" data-section-bg aria-hidden="true">
+              <img src={item.image} alt="" className="section-bg-image" loading="lazy" />
             </div>
-            <div className="level-overlay" />
-            <div className="level-content">
-              <p className="level-tag">{item.level}</p>
-              <p className="level-period">{item.period}</p>
+            <div className="section-overlay" />
+            <div className="section-content">
+              <p className="section-tag">{item.section}</p>
+              <p className="section-period">{item.period}</p>
               <h2>{item.title}</h2>
-              <p>{item.marker}</p>
-              <p className="level-hint">Nhấn để mở chi tiết phần</p>
-              <p className="level-progress">
+              <p className="section-marker">{item.marker}</p>
+              <p className="section-hint">Nhấn để mở chi tiết phần</p>
+              <p className="section-progress">
                 Mục {index + 1}/{timeline1986to1991.length}
               </p>
             </div>

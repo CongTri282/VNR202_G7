@@ -15,10 +15,13 @@ function HeaderNav() {
           to="/presentation"
           className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
         >
-          Thuyết trình
+          Nội dung
         </NavLink>
         <NavLink to="/game" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
           Game
+        </NavLink>
+        <NavLink to="/ai-usage" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+          AI Usage
         </NavLink>
       </nav>
     </header>

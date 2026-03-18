@@ -1,4 +1,5 @@
-﻿import { BrowserRouter, Route, Routes } from 'react-router-dom'
+﻿import { useEffect } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HeaderNav from './components/HeaderNav'
 import SupportChatWidget from './components/SupportChatWidget'
@@ -9,8 +10,13 @@ import GameHubPage from './pages/GameHubPage'
 import AIUsagePage from './pages/AIUsagePage'
 import OddOneOutGamePage from './pages/games/OddOneOutGamePage'
 import Game2PlaceholderPage from './pages/games/Game2PlaceholderPage'
+import { recordVisit } from './lib/userMetrics'
 
 function App() {
+  useEffect(() => {
+    recordVisit()
+  }, [])
+
   return (
     <BrowserRouter>
       <div className="app-shell">

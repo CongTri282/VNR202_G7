@@ -1,12 +1,17 @@
-﻿import { useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { oddOneOutGame } from '../../data/oddOneOutGame'
+import { recordGameStart } from '../../lib/userMetrics'
 
 function OddOneOutGamePage() {
   const [currentLevelIndex, setCurrentLevelIndex] = useState(0)
   const [selectedWord, setSelectedWord] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [completedLevels, setCompletedLevels] = useState([])
+
+  useEffect(() => {
+    recordGameStart()
+  }, [])
 
   const currentLevel = oddOneOutGame.levels[currentLevelIndex]
   const isCorrect = selectedWord === currentLevel.answer

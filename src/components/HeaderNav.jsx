@@ -9,7 +9,7 @@ function HeaderNav() {
       </div>
       <nav className="top-nav" aria-label="Điều hướng chính">
         <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end>
-          Home
+          Trang chủ
         </NavLink>
         <NavLink
           to="/presentation"

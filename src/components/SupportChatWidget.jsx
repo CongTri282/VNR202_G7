@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { SendOutlined, CloseOutlined, MessageOutlined, LoadingOutlined } from "@ant-design/icons";
 import "./SupportChatWidget.css";
+import { recordChatMessage } from "../lib/userMetrics";
 
 // Generate or retrieve sessionId
 const getOrCreateSessionId = () => {
@@ -51,6 +52,7 @@ export default function SupportChatWidget() {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
+    recordChatMessage();
     const tempId = `user-${Date.now()}`;
     const botTempId = `bot-${Date.now()}`;
 

@@ -1,6 +1,13 @@
 ﻿import partOneImage from '../assets/vnr1.jpg'
 import partTwoImage from '../assets/vnr2.jpg'
 import partThreeImage from '../assets/vnr3.jpg'
+import part1sec1Image from '../assets/vnr5.jpg'
+import part1sec2Image from '../assets/vnr4.jpg'
+import part2sec1Image from '../assets/vnr6.jpg'
+import part2sec2Image from '../assets/vnr12.jpg'
+import part2sec3Image from '../assets/vnr8.jpg'
+import part3sec1Image from '../assets/vnr9.jpg'
+import part3sec2Image from '../assets/vnr11.jpg'
 
 export const timeline1986to1991 = [
   {
@@ -16,6 +23,7 @@ export const timeline1986to1991 = [
     sections: [
       {
         title: 'Bối cảnh quốc tế và trong nước',
+        image: part1sec1Image,
         points: [
           'Cách mạng khoa học kỹ thuật phát triển mạnh, xu thế đối thoại dần thay thế đối đầu trên thế giới.',
           'Trong nước, kinh tế - xã hội lâm vào khủng hoảng nghiêm trọng, đặt ra yêu cầu cấp bách phải đổi mới.',
@@ -23,6 +31,7 @@ export const timeline1986to1991 = [
       },
       {
         title: 'Đường lối đổi mới tại Đại hội VI',
+        image: part1sec2Image,
         points: [
           'Xóa bỏ cơ chế tập trung quan liêu bao cấp.',
           'Phát triển nền kinh tế nhiều thành phần.',
@@ -49,6 +58,7 @@ export const timeline1986to1991 = [
     sections: [
       {
         title: 'Giải pháp kinh tế trong chỉ đạo thực hiện',
+        image: part2sec1Image,
         points: [
           'Thực hiện mục tiêu "bốn giảm" để ổn định kinh tế - xã hội.',
           'Chuyển các đơn vị quốc doanh sang hạch toán kinh doanh.',
@@ -56,6 +66,7 @@ export const timeline1986to1991 = [
       },
       {
         title: 'Các cột mốc nổi bật',
+        image: part2sec2Image,
         points: [
           'Khoán 10 (1988) tạo động lực phát triển nông nghiệp và khơi thông sản xuất.',
           'Nhà nước công nhận sự tồn tại của nhiều thành phần kinh tế.',
@@ -63,6 +74,7 @@ export const timeline1986to1991 = [
       },
       {
         title: 'Đổi mới chính trị và đối ngoại',
+        image: part2sec3Image,
         points: [
           'Hội nghị Trung ương 6 (1989) đánh dấu bước đổi mới về tư duy chính trị và hệ thống chính trị.',
           'Thực hiện phương châm đối ngoại: "thêm bạn, bớt thù".',
@@ -86,6 +98,7 @@ export const timeline1986to1991 = [
     sections: [
       {
         title: 'Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội',
+        image: part3sec1Image,
         points: [
           'Phân tích định hướng xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội.',
           'Xác định xây dựng Nhà nước của dân, do dân, vì dân là trụ cột chính trị của quá trình đổi mới.',
@@ -93,6 +106,7 @@ export const timeline1986to1991 = [
       },
       {
         title: 'Chiến lược ổn định và phát triển kinh tế - xã hội đến năm 2000',
+        image: part3sec2Image,
         points: [
           'Mục tiêu đưa đất nước ra khỏi khủng hoảng kinh tế - xã hội.',
           'Khẳng định nền kinh tế vận hành theo cơ chế thị trường có sự quản lý của Nhà nước.',

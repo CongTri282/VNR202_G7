@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { timeline1986to1991 } from '../data/timeline1986_1991'
+import { historicalSliderImages } from '../data/historicalSliderImages'
 import placeholderImage from '../assets/home-bg.jpg'
 
 const legacySectionToPart = {
@@ -36,11 +37,16 @@ function SectionDetailPage() {
   const [visibleSlideCount, setVisibleSlideCount] = useState(3)
 
   const sliderImages = useMemo(() => {
+    // Use historical slider images as primary source
     const images = [
-      ...timeline1986to1991.map((part) => ({
-        src: part.image,
-        alt: part.imageAlt || `Tư liệu ${part.title}`,
+      ...historicalSliderImages.map((item) => ({
+        src: item.src,
+        alt: item.alt,
       })),
+      // ...timeline1986to1991.map((part) => ({
+      //   src: part.image,
+      //   alt: part.imageAlt || `Tư liệu ${part.title}`,
+      // })),
       { src: placeholderImage, alt: 'Tư liệu minh họa lịch sử Việt Nam' },
     ].filter((item) => item.src)
 
